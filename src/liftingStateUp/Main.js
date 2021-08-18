@@ -1,46 +1,53 @@
-import React, { Component } from 'react';
-import Counter from './Counter'
+import React, { Component } from "react";
 
 class Main extends Component {
 
-    state = {
-        count: 0
-    };
+  state = {
+    name: "",
+  };
 
-    increment = () => {
-        this.setState({
-            count: this.state.count + 1
-        });
-    };
+  onText = (e) => {
+    this.setState({
+      name: e.target.value,
+    });
+  };
 
-
-    decrement = () => {
-        this.setState({
-            count: this.state.count - 1
-        });
-    };
-
-    render() {
-        return (
-            <div className="App">
-                <Counter 
-                    count={this.state.count} 
-                    increment={this.increment} 
-                    decrement={this.decrement}
-                />
-                <Counter 
-                    count={this.state.count} 
-                    increment={this.increment} 
-                    decrement={this.decrement}
-                />
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div style={{ backgroundColor: "green" }}>
+        <h5>main</h5>
+        <Child1 onTextChange={this.onText}/>
+        <br />
+        <h4>{this.state.name}</h4>
+      </div>
+    );
+  }
 }
 
-export default Main
+class Child1 extends Component {
+
+  render() {
+    return (
+      <div style={{ backgroundColor: "red" }}>
+        <h5>child</h5>
+        <Child11 {...this.props}/>
+      </div>
+    );
+  }
+}
+
+class Child11 extends Component {
+
+  render() {
+    return (
+      <div style={{ backgroundColor: "yellow" }}>
+        <h5>child</h5>
+        <input type="text" onChange={this.props.onTextChange} />
+      </div>
+    );
+  }
+}
 
 
-// several components need to reflect the same changing data
-// these two component can comunicate with each other 
-// what ever change we made in child componenet should reflect to parent component and corresponding child compoent of parent 
+
+export default Main;

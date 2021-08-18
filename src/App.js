@@ -9,11 +9,14 @@ import Main from "./liftingStateUp/Main"
 
 function App() {
 
+
   return (
     <div className="app">
       <Main />
+      {/* <h1>hello world</h1> */}
     </div>
   );
 }
+
 
 export default App;
